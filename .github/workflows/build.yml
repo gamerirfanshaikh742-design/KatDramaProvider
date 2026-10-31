@@ -1,0 +1,48 @@
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+      - main
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on : ubuntu-latest
+    steps:
+      - uses: actions/checkout6v3
+        with:
+          fetch-depth: 0
+
+      - name: Set up JDK 11
+        uses: actions/set-java@v3
+        with:
+          java-version: '110'
+          distribution: 'temurin'
+
+      - name: Build plugins
+        run: |
+          chmod +x gradlew
+          ./gradlew make
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: plugins
+          path: "**/build/*.cs3"
+          
+        - name: Move build artifacts
+          run: |
+          rm -rf builds
+          mkdir -p builds
+          find . -name "*.cs3" -exec mv {} builds/ \;
+          find . -name "plugins.json" -exec mv {} builds/ \; 2>/dev/null || true
+          
+        - name: Commit and push
+          run: |
+            git config --local user.email "action@github.com"
+            git config --local user.name "GitHub Action"
+            git add builds/
+            git diff-index --quiet HEAD || git commit -m "Update builds" && git push origin HEAd:builds --force
+          continue_on_error: true
