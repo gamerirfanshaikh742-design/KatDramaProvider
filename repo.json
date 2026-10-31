@@ -1,0 +1,8 @@
+{
+  "name": "KatDrama Repository",
+  "description": "KatDrama extension repository",
+  "manifestVersion": 1,
+  "pluginLists": [
+    "https://raw.githubusercontent.com/YOUR_USERNAME/KatDramaProvider/builds/plugins.json"
+  ]
+}
