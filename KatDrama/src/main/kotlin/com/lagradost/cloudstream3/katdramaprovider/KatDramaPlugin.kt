@@ -1,3 +1,11 @@
 package com.lagradost.cloudstream3.katdramaprovider
 
-bšš+´½´¹±…É…‘½ÍĞ¹±½Õ‘ÍÑÉ•…´Ì¹Á±Õ¥¹Ì¹±½Õ‘ÍÑÉ•…µA±Õ¥¸)¥µÁ½ÉĞ½´¹±…É…‘½ÍĞ¹±½Õ‘ÍÑÉ•…´Ì¹Á±Õ¥¹Ì¹A±Õ¥¸)¥µÁ½ÉĞ…¹‘É½¥¹½¹Ñ•áĞ¹½¹Ñ•áĞ()±½Õ‘ÍÑÉ•…µA±Õ¥¸)±…ÍÌ-…ÑÉ…µ…A±Õ¥¸é±Õ¥¸ ¤ì(€€€½Ù•ÉÉ¥‘”™Õ¸±½…¡½¹Ñ•áĞè½¹Ñ•áĞ¹½¹Ñ•áĞ¤ì(€€€€€€€€¼¼10AI=Y%ILM!=U1	…%8Q!%L599H¸A±•…Í”‘½¸Ğ•‘¥ĞÑ¡”ÁÉ½Ù¥‘•ÉÌ±¥ÍĞ‘¥É•Ñ±ä¸(€€€€€€€É•¥ÍÑ•É5…¥¹A$¡-…ÑÉ…µ…AÉ½Ù¥‘•È ¤¤(€€€ô)ô(
+import com.lagradost.cloudstream3.plugins.CloudstreamPlugin
+import com.lagradost.cloudstream3.plugins.Plugin
+
+@CloudstreamPlugin
+class KatDramaPlugin : Plugin() {
+    override fun load() {
+        registerMainAPI(KatDramaProvider())
+    }
+}
