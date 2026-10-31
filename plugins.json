@@ -1,0 +1,17 @@
+[
+    {
+        "iconUrl": "https://www.google.com/s2/favicons?domain=katdrama.org&sz=%size%",
+        "apiVersion": 1,
+        "repositoryUrl": "https://github.com/gamerirfanshaikh742-design/KatDramaProvider",
+        "fileSize": 10000,
+        "status": 1,
+        "language": "hi",
+        "authors": ["KatDrama"],
+        "tvTypes": ["TvSeries", "Movie", "AsianDrama"],
+        "version": 1,
+        "internalName": "KatDrama",
+        "description": "KatDrama - Korean, Chinese, Japanese, Thai dramas with Hindi dubbed",
+        "url": "https://raw.githubusercontent.com/gamerirfanshaikh742-design/KatDramaProvider/builds/KatDrama.cs3",
+        "name": "KatDrama"
+    }
+]
