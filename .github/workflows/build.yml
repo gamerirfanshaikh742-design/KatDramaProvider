@@ -9,43 +9,48 @@ on:
 
 jobs:
   build:
-    runs-on : ubuntu-latest
+    runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout:v3
+      - uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
       - name: Set up JDK 11
-        uses: actions/set-java:v3
+        uses: actions/setup-java@v4
         with:
-          java-version: '110'
           distribution: 'temurin'
+          java-version: '11'
 
       - name: Setup Gradle
-        uses: gradle/gradle-build-action@v2
+        uses: gradle/actions/setup-gradle@v3
 
       - name: Build plugins
         run: |
           chmod +x gradlew
           ./gradlew make 2>/dev/null || gradle make
 
-      - name: Upload artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: plugins
-          path: "**/build/*.cs3"
-          
-        - name: Move build artifacts
-          run: |
+      - name: Move build artifacts
+        run: |
           rm -rf builds
           mkdir -p builds
           find . -name "*.cs3" -exec mv {} builds/ \; 2>/dev/null || true
           find . -name "plugins.json" -exec mv {} builds/ \; 2>/dev/null || true
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugins
+          path: "builds/**"
 
       - name: Commit and push
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git add builds/
-          git diff-index --quiet HEAD || git commit -m "Update builds" && git push origin HEAD:builds --force
+          if git diff --cached --quiet; then
+            echo "No build artifacts to commit."
+          else
+            git commit -m "Update builds"
+            git push origin HEAD:builds --force
+          fi
         continue_on_error: true
