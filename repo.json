@@ -3,6 +3,6 @@
   "description": "KatDrama extension repository",
   "manifestVersion": 1,
   "pluginLists": [
-    "https://raw.githubusercontent.com/YOUR_USERNAME/KatDramaProvider/builds/plugins.json"
+    "https://raw.githubusercontent.com/gamerirfanshaikh742-design/KatDramaProvider/builds/plugins.json"
   ]
 }
